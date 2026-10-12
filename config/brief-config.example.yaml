@@ -1,0 +1,117 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Network Daily Brief — configuration
+#
+# Copy this file to brief-config.yaml (or paste it into a Google Doc) and fill
+# it in. Everything that is specific to YOUR network lives here; the skill and
+# the prompts stay generic. Values in <angle brackets> must be replaced.
+# ─────────────────────────────────────────────────────────────────────────────
+
+network:
+  name: "<Northwind Media>"          # shown in the masthead and footer
+  short: "<NWM>"                     # used in file names and email subjects
+  timezone: "<Europe/Bucharest>"     # all times below are in this zone
+  currency: "USD"
+  tracker: "<Affise>"                # Affise | Everflow | TUNE | CAKE | Voluum | other
+  chat: "<Microsoft Teams>"          # Microsoft Teams | Slack | none
+
+schedule:
+  standup: "10:30"                   # the meeting the brief is written for
+  workdays: [Mon, Tue, Wed, Thu, Fri]
+  tracker_export_at: "07:00"         # export job writes yesterday's numbers
+  chat_export_at: "07:05"            # export job writes the last 24h (72h Monday)
+  brief_at: "08:45"                  # leave >= 60 min after the exports
+  # Brief type by day (do not change unless you change the templates):
+  #   Monday            -> Weekend Recap  (Fri + Sat + Sun)
+  #   Tuesday-Thursday  -> Daily Brief    (yesterday)
+  #   Friday            -> Weekly Recap   (last Fri -> Thu, 7 days)
+  #   Saturday/Sunday   -> do not run
+
+delivery:
+  mode: draft                        # draft = a person reviews and sends (recommended)
+                                     # send  = the brief is sent automatically
+  mailbox: "<ops-lead@yournetwork.com>"   # the Gmail account that owns the draft
+  to: ["<ops@yournetwork.com>"]
+  cc: ["<am-advertisers@yournetwork.com>", "<am-publishers@yournetwork.com>"]
+  subjects:
+    monday: "{short} Weekend Recap — Monday, {Month} {Day}, {Year}"
+    daily:  "{short} Daily Brief — {Weekday}, {Month} {Day}, {Year}"
+    friday: "{short} Weekly Recap — Friday, {Month} {Day}, {Year}"
+
+sources:
+  drive_folder: "<Daily Brief>"      # where the exports and reference docs live
+  # Export docs. {data_date} = the day the numbers cover (yesterday),
+  # {run_date} = the day the export ran. Dates are YYYY-MM-DD.
+  tracker_export_name: "{short_lower}_tracker_{data_date}"
+  chat_export_name:    "{short_lower}_chat_{run_date}"
+  # Read the intelligence docs by FILE ID, not by title (titles drift and
+  # stale copies exist). Title is only the fallback.
+  reference_doc:  { id: "<google-doc-id>", title: "<NWM_Daily_Brief_Reference>" }
+  matrix_doc:     { id: "<google-doc-id>", title: "<NWM_Campaign_Intelligence_Matrix_LIVE>" }
+  formatting_doc: { id: "", title: "" }   # optional: overrides for the email design
+
+confirmations:                       # monthly advertiser confirmations ("NC")
+  enabled: true
+  sheet_title: "{short} NC {Month} {Year}"   # the sheet for the month being confirmed
+  check_days: [1, 20]                # show the status block between these days
+  # In month N you confirm month N-1. After day 20 the block only appears
+  # while Pending / Disputed rows with money remain.
+  statuses_terminal: [Confirmed, Part Scrub, Scrubbed]
+  statuses_open: [Pending, Disputed]
+
+definitions:
+  # How revenue is counted. At the network this was built for, "declined" is a
+  # manual cap-management status and is still payable, so it counts as revenue.
+  # If declined means rejected/unpaid in your network, remove it here.
+  revenue_includes: [approved, hold, declined]
+  margin: "revenue minus ALL publisher payouts (approved + hold + declined payout)"
+  # Statuses your team sets by hand. $0 in these is normal and must never be
+  # flagged as a bug.
+  manual_statuses: [declined, hold]
+  vocabulary:
+    use:   ["Profit Margin", "declined", "conversion (CV in tables only)"]
+    avoid: ["earnings", "throttled", "unexplained abbreviations"]
+
+# Offers whose payable event arrives days after the install/click.
+# $0 revenue inside the window is NORMAL, not a payout bug.
+attribution_delays:
+  - { match: "<Orbit VPN>",  days: 6, note: "subscription confirmed after trial" }
+  - { match: "<Quill Cash>", days: 4 }
+
+# Offer IDs that are tests and must be ignored in zero-traffic checks.
+test_offer_ids: [<7>, <33>]
+
+# Who owns what. The brief routes every action item to exactly one owner.
+# Rules are applied top to bottom; the first match wins.
+owners:
+  - name: "<Ana Pop>"
+    short: "<Ana>"
+    role: "Advertiser AM"
+    email: "<ana@yournetwork.com>"
+    owns: { advertisers: "all" }
+    except_advertisers: ["<Kestrel Ads>"]
+  - name: "<Mihai Ionescu>"
+    short: "<Mihai>"
+    role: "Publisher AM"
+    email: "<mihai@yournetwork.com>"
+    owns: { publishers: "all" }
+  - name: "<Dan Radu>"
+    short: "<Dan>"
+    role: "Ad Ops / tracker admin"
+    email: "<dan@yournetwork.com>"
+    owns: { technical: true }        # payout config, postbacks, caps, tracking
+  - name: "<Head of Ops>"
+    short: "<Ops lead>"
+    role: "Head of Operations"
+    email: "<ops-lead@yournetwork.com>"
+    owns: { advertisers: ["<Kestrel Ads>"], escalations: true, unknown: true }
+
+thresholds:
+  concentration_pct: 30              # flag any advertiser/publisher/offer above this share
+  anti_repetition_days: { amber: 3, red: 5, drop: 10 }
+  max_actions_per_owner: 5
+  click_graveyard: { min_clicks: 10000, max_cr_pct: 0.05, min_days: 3 }
+  zombie_offer_days: 7               # active offer with no traffic this long
+  margin_drift_pp: 3                 # week-over-week margin drop worth flagging
+
+# Weekly/monthly signals the Friday recap tracks (optional).
+pipeline_goal_pct: 40                # share of scored campaigns that should convert

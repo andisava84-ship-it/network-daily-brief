@@ -1,0 +1,17 @@
+# Script output
+matrix.json
+matrix_tables.md
+
+# Your real data — never commit these to a public fork
+*-confirmations.csv
+*-payouts.csv
+!examples/sample-*.csv
+exports/
+private/
+
+# Python
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store

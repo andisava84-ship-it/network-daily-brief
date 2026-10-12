@@ -1,0 +1,33 @@
+month,advertiser,offer_id,offer_name,vertical,geo,model,tracked,confirmed,status
+2026-01,Acme Mobile,118,Lumen Bank - Android - ES (CPA),Finance,ES,CPA,14200.00,14200.00,Confirmed
+2026-02,Acme Mobile,118,Lumen Bank - Android - ES (CPA),Finance,ES,CPA,15800.00,15642.00,Confirmed
+2026-03,Acme Mobile,118,Lumen Bank - Android - ES (CPA),Finance,ES,CPA,17400.00,17400.00,Confirmed
+2026-04,Acme Mobile,118,Lumen Bank - Android - ES (CPA),Finance,ES,CPA,18900.00,18900.00,Confirmed
+2026-01,Acme Mobile,231,Parcel Pets - Android - ES,Shopping,ES,CPI,3100.00,3038.00,Part Scrub
+2026-02,Acme Mobile,231,Parcel Pets - Android - ES,Shopping,ES,CPI,3400.00,3400.00,Confirmed
+2026-03,Acme Mobile,231,Parcel Pets - Android - ES,Shopping,ES,CPI,3900.00,3783.00,Part Scrub
+2026-04,Acme Mobile,231,Parcel Pets - Android - ES,Shopping,ES,CPI,4300.00,4257.00,Confirmed
+2026-01,Bluebird Ads,204,Quill Cash - iOS - US (CPR),Finance,US,CPR,5200.00,5200.00,Confirmed
+2026-02,Bluebird Ads,204,Quill Cash - iOS - US (CPR),Finance,US,CPR,5900.00,5664.00,Part Scrub
+2026-03,Bluebird Ads,204,Quill Cash - iOS - US (CPR),Finance,US,CPR,6400.00,6272.00,Part Scrub
+2026-04,Bluebird Ads,204,Quill Cash - iOS - US (CPR),Finance,US,CPR,6800.00,6596.00,Part Scrub
+2026-03,Bluebird Ads,245,Drift eSIM - iOS - UK (CPA),Travel/eSIM,UK,CPA,2400.00,2400.00,Confirmed
+2026-04,Bluebird Ads,245,Drift eSIM - iOS - UK (CPA),Travel/eSIM,UK,CPA,3100.00,0.00,Pending
+2026-01,Orbit Direct,187,Orbit VPN - iOS - US (CPS),VPN,US,CPS,4800.00,2976.00,Part Scrub
+2026-02,Orbit Direct,187,Orbit VPN - iOS - US (CPS),VPN,US,CPS,4300.00,2408.00,Part Scrub
+2026-03,Orbit Direct,187,Orbit VPN - iOS - US (CPS),VPN,US,CPS,3900.00,2067.00,Part Scrub
+2026-04,Orbit Direct,187,Orbit VPN - iOS - US (CPS),VPN,US,CPS,3600.00,1728.00,Part Scrub
+2026-01,Harbor Digital,150,Glow Fitness - iOS - US (CPA),Health/Fitness,US,CPA,2100.00,0.00,Scrubbed
+2026-02,Harbor Digital,150,Glow Fitness - iOS - US (CPA),Health/Fitness,US,CPA,1800.00,0.00,Scrubbed
+2026-03,Harbor Digital,310,Pebble Market - Android - TR,Shopping,TR,CPI,1300.00,1222.00,Part Scrub
+2026-04,Harbor Digital,310,Pebble Market - Android - TR,Shopping,TR,CPI,1600.00,1456.00,Part Scrub
+2026-01,Contoso Leads,162,Fern Energy - Android - IT (CPA),Utilities,IT,CPA,900.00,900.00,Confirmed
+2026-02,Contoso Leads,162,Fern Energy - Android - IT (CPA),Utilities,IT,CPA,1100.00,1067.00,Part Scrub
+2026-03,Contoso Leads,162,Fern Energy - Android - IT (CPA),Utilities,IT,CPA,1250.00,1250.00,Confirmed
+2026-04,Contoso Leads,162,Fern Energy - Android - IT (CPA),Utilities,IT,CPA,1400.00,1372.00,Part Scrub
+2026-01,Kestrel Ads,140,Kite Learn - iOS - US (CPA),Education,US,CPA,2600.00,2548.00,Part Scrub
+2026-02,Kestrel Ads,140,Kite Learn - iOS - US (CPA),Education,US,CPA,2300.00,2231.00,Part Scrub
+2026-01,Maple Media,183,Pixel Scan - Android - US (CPA),Utility apps,US,CPA,1500.00,675.00,Part Scrub
+2026-02,Maple Media,183,Pixel Scan - Android - US (CPA),Utility apps,US,CPA,1700.00,646.00,Part Scrub
+2026-03,Maple Media,183,Pixel Scan - Android - US (CPA),Utility apps,US,CPA,1400.00,560.00,Part Scrub
+2026-04,Maple Media,183,Pixel Scan - Android - US (CPA),Utility apps,US,CPA,1200.00,432.00,Part Scrub
