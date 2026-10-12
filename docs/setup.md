@@ -20,6 +20,8 @@ Daily Brief/
 
 Restrict it to the people who already see the tracker and the chats.
 
+**Outcome:** one private place where the exports land and the brief's memory lives.
+
 ## 2. Fill in the config
 
 Copy `config/brief-config.example.yaml` to `skill/network-daily-brief/references/brief-config.yaml` and replace every `<placeholder>`:
@@ -31,17 +33,25 @@ Copy `config/brief-config.example.yaml` to `skill/network-daily-brief/references
 - `test_offer_ids` — offers to ignore.
 - `owners` — every person who receives actions, with what they own. The first matching rule wins.
 
+**Outcome:** the brief knows your definitions, owners and recipients, and won't flag normal delays or test offers.
+
 ## 3. Build the tracker export
 
 Follow [`prompts/tracker-export-agent.md`](../prompts/tracker-export-agent.md) and the format in [`docs/data-contracts.md`](data-contracts.md) §1. Schedule it Monday–Friday at `schedule.tracker_export_at`. Run it once by hand and compare three numbers against the tracker UI: yesterday's approved revenue, one offer's conversions, one publisher's payout.
+
+**Outcome:** every weekday at 07:00 a Google Doc with yesterday's offer and publisher stats, a 7-day trend, zero-traffic and paused offers — checked against your tracker.
 
 ## 4. Build the chat export (optional)
 
 Follow [`prompts/chat-export-agent.md`](../prompts/chat-export-agent.md). List every advertiser and publisher chat, the internal ops channel and the wishlist chat. Exclude personal and HR channels.
 
+**Outcome:** the brief sees campaign offers, publisher requests and problems raised in chat, and scores them.
+
 ## 5. Create the Intelligence Reference
 
 Copy [`templates/intelligence-reference.md`](../templates/intelligence-reference.md) into a Google Doc in `reference/`. On day one, fill **Parts 1, 8, 9 and 12** — definitions, scoring formula, failure patterns and brief rules need no history. Fill the tier, geo, vertical and profile parts once you have three closed months of confirmations (step 6 produces the numbers). Put its file ID in `sources.reference_doc`.
+
+**Outcome:** from day one the brief scores new campaigns, applies hard filters and names failure patterns.
 
 ## 6. Create the Matrix (once you have confirmations)
 
@@ -59,9 +69,13 @@ Try it first on the samples:
 python3 scripts/matrix_compute.py --adv examples/sample-advertiser-confirmations.csv --pub examples/sample-publisher-payouts.csv
 ```
 
+**Outcome:** tiers, success profiles, dormant publishers, untapped matches and win-back advertisers built from what advertisers actually paid.
+
 ## 7. Install the brief and schedule it
 
 Install `skill/network-daily-brief/` as a skill, or put its instructions in a Drive doc. Then create the scheduled task: [`prompts/scheduled-task.md`](../prompts/scheduled-task.md). Monday–Friday, at least an hour after the exports, written in your local time zone.
+
+**Outcome:** every weekday a finished HTML brief waits in Gmail as a draft.
 
 ## 8. Run it by hand, then check
 
@@ -74,9 +88,13 @@ Run the task once while watching and check:
 - [ ] The draft renders in Gmail **and** in Outlook (dark headers, zebra rows, chips visible).
 - [ ] If you save the HTML, `python3 scripts/check_email_html.py brief.html` passes.
 
+**Outcome:** a first brief you trust enough to send.
+
 ## 9. Start the loop
 
 Send the first brief and ask the team to **reply to it** with what they did. The second brief reads those replies; by the end of the first week the "What changed" section and the ages on each action are doing real work.
+
+**Outcome:** tomorrow's brief reads the replies, marks items fixed, ages what is open and drops what nobody acted on after ten days.
 
 ## Keeping it healthy
 
